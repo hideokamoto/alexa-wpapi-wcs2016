@@ -78,12 +78,8 @@ def on_intent(intent_request, session):
     print(str(session))
 
     # Dispatch to your skill's intent handlers
-    if intent_name == "MyNameIsIntent":
-        return set_visitor_name_from_session(intent, session)
-    elif intent_name == "WhatIsIntent" or intent_name == "CanIUseIntent":
+    if intent_name == "WhatIsIntent" or intent_name == "TellMeIntent":
         return dispatch_question(intent, session)
-    elif intent_name == "ImpressionIntent":
-        return collect_impression(intent, session)
     elif intent_name == "AMAZON.YesIntent":
         return dispatch_yes_intent(intent, session)
     elif intent_name == "AMAZON.NoIntent":
@@ -115,8 +111,6 @@ def get_welcome_response(intent, session):
     debug_logger(intent, session)
 
     session_attributes = build_session_attributes(session)
-    if session['new']:
-        put_event_to_firehorse(intent, session)
 
     card_title = "Welcome to AMIMOTO Ninja !!"
     text_data = load_text_from_yaml('Welcome')
@@ -154,7 +148,6 @@ def handle_session_end_request(intent, session):
     speech_output = '<p>Thank you for trying the, <phoneme alphabet="ipa" ph="amimoʊtoʊ">AMIMOTO</phoneme> Ninja.</p>' \
                     "Have a nice day!"
     # Setting this to true ends the session and exits the skill.
-    put_event_to_firehorse(intent, session)
     should_end_session = True
     return build_response({}, build_speechlet_response(
         card_title, speech_output, None, should_end_session))

@@ -87,27 +87,6 @@ def build_response(session_attributes, speechlet_response):
 def load_text_from_yaml(title):
     return yaml.load(open('data/text/{card}.yml'.format(card=title)).read())
 
-
-def load_attendees():
-    return json.load(open('data/attendees.json'))
-
-
-def put_event_to_firehorse(intent_request, session):
-    data = {}
-    client = boto3.client('firehose', region_name='us-east-1')
-    data['request'] = intent_request
-    data['session'] = session
-
-    try:
-        for stream in lamvery.secret.get('fh_stream').split(','):
-            client.put_record(DeliveryStreamName=stream, Record={'Data': json.dumps(data) + "\n"})
-            print "Stored to firehose({0}): ".format(stream), json.dumps(data)
-
-    except:
-        print "Unexpected error: ", sys.exc_info()
-    return True
-
-
 def remove_ssml_tags(ssml):
     try:
         text = []

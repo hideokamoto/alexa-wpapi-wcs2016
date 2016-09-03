@@ -4,7 +4,7 @@ versioning: false
 default_alias: head
 clean_build: false
 configuration:
-  name: amimoto-alexa
+  name: alexa-wpapi-wcs2016
   runtime: python2.7
   role: {{ env['AWS_LAMBDA_ROLE'] }}
   handler: lambda_function.lambda_handler

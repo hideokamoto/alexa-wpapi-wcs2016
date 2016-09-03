@@ -1,15 +1,6 @@
 {
   "intents": [
     {
-      "intent": "MyNameIsIntent",
-      "slots": [
-        {
-          "name": "VisitorName",
-          "type": "AMAZON.LITERAL"
-        }
-      ]
-    },
-    {
       "intent": "WhatIsIntent",
       "slots": [
         {
@@ -19,19 +10,10 @@
       ]
     },
     {
-      "intent": "CanIUseIntent",
+      "intent": "TellMeIntent",
       "slots": [
         {
-          "name": "AskedQuestion",
-          "type": "AMAZON.LITERAL"
-        }
-      ]
-    },
-    {
-      "intent": "ImpressionIntent",
-      "slots": [
-        {
-          "name": "UserImpression",
+          "name": "TellMeQuestion",
           "type": "AMAZON.LITERAL"
         }
       ]
@@ -53,4 +35,3 @@
     }
   ]
 }
-
